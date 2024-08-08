@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cari Foto - SMANERE</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="container">
+        <div id="search-box" class="animate">
+            <h1>Temukan Fotomu</h1>
+            <input type="text" id="identity-number" placeholder="Masukkan NIS">
+            <button onclick="searchPhoto()">Cari</button>
+            <div id="result"></div>
+        </div>
+    </div>
+    <div id="overlay" class="hidden"></div>
+    <div id="popup" class="popup hidden">
+        <p id="popup-message"></p>
+        <button onclick="closePopup()">Tutup</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
