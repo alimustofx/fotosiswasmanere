@@ -1,3 +1,4 @@
+/* General Styles */
 body {
     font-family: 'Roboto', sans-serif;
     background: linear-gradient(to right, #f8f9fa, #e9ecef);
@@ -18,23 +19,13 @@ body {
     max-width: 600px;
 }
 
-/* bubbles */
-body::before,
-body::after,
-body::before,
-body::after,
-body::before,
-body::after,
+/* Bubbles */
 body::before,
 body::after {
     content: '';
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 400px;
-    height: 400px;
-    background: rgba(40, 78, 161, 0.3);
     border-radius: 50%;
+    background: rgba(40, 78, 161, 0.3);
     z-index: -1;
     animation: move 4s infinite alternate;
 }
@@ -55,19 +46,26 @@ body::after {
     animation-delay: 2s;
 }
 
-body::before::before {
+/* Additional Bubbles */
+body::before::after {
+    content: '';
+    position: absolute;
     width: 600px;
     height: 600px;
     top: 30%;
     left: 10%;
+    background: rgba(40, 78, 161, 0.3);
     animation-delay: 4s;
 }
 
-body::after::after {
+body::after::before {
+    content: '';
+    position: absolute;
     width: 400px;
     height: 400px;
     top: 50%;
     left: 90%;
+    background: rgba(40, 78, 161, 0.3);
     animation-delay: 6s;
 }
 
@@ -80,13 +78,14 @@ body::after::after {
     }
 }
 
-/* search box */
+/* Search Box */
 #search-box {
     background: rgba(255, 255, 255, 0.9);
     border-radius: 16px;
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     padding: 40px;
     width: 100%;
+    max-width: 500px; /* Ensure a maximum width */
     text-align: center;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -160,7 +159,7 @@ button:hover {
     text-decoration: underline;
 }
 
-/* pop up notification */
+/* Popup Notification */
 #overlay {
     position: fixed;
     top: 0;
@@ -181,23 +180,25 @@ button:hover {
 
 .popup {
     position: fixed;
-    top: 10%;
+    top: 10%; /* Position it a bit below the top */
     left: 50%;
-    transform: translate(-50%, 0);
+    transform: translate(-50%, 0); /* Center horizontally and no vertical translation */
     background: #fff;
     border-radius: 16px;
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    padding: 40px;
+    padding: 20px; /* Smaller padding */
+    width: 80%; /* Smaller width for mobile devices */
+    max-width: 400px; /* Set a maximum width */
     text-align: center;
     z-index: 1001;
     opacity: 0;
-    transform: scale(0.8) translate(-50%, 0);
+    transform: scale(0.8);
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .popup.show {
     opacity: 1;
-    transform: scale(1) translate(-50%, 0);
+    transform: scale(1);
 }
 
 .popup button {
@@ -205,8 +206,8 @@ button:hover {
     border: none;
     border-radius: 8px;
     color: white;
-    padding: 12px 24px;
-    font-size: 18px;
+    padding: 10px 20px; /* Adjusted padding */
+    font-size: 14px; /* Adjusted font size */
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
@@ -214,4 +215,124 @@ button:hover {
 .popup button:hover {
     background-color: #c82333;
     transform: translateY(-2px);
+}
+
+/* Media Queries for Mobile Devices */
+@media (max-width: 768px) {
+    #search-box {
+        padding: 20px;
+    }
+
+    #search-box h1 {
+        font-size: 24px;
+    }
+
+    input[type="text"] {
+        padding: 8px 16px;
+        font-size: 16px;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+
+    #result {
+        font-size: 16px;
+    }
+    
+    /* Smaller Bubbles for Tablets */
+    body::before {
+        width: 300px;
+        height: 300px;
+        top: 20%;
+        left: 60%;
+    }
+
+    body::after {
+        width: 200px;
+        height: 200px;
+        top: 70%;
+        left: 30%;
+    }
+
+    body::before::after {
+        width: 400px;
+        height: 400px;
+        top: 40%;
+        left: 10%;
+    }
+
+    body::after::before {
+        width: 300px;
+        height: 300px;
+        top: 60%;
+        left: 80%;
+    }
+}
+
+@media (max-width: 480px) {
+    #search-box {
+        padding: 15px;
+    }
+
+    #search-box h1 {
+        font-size: 20px;
+    }
+
+    input[type="text"] {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+
+    button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    #result {
+        font-size: 14px;
+    }
+
+    /* Even Smaller Bubbles for Mobile Phones */
+    body::before {
+        width: 200px;
+        height: 200px;
+        top: 10%;
+        left: 50%;
+    }
+
+    body::after {
+        width: 150px;
+        height: 150px;
+        top: 70%;
+        left: 20%;
+    }
+
+    body::before::after {
+        width: 250px;
+        height: 250px;
+        top: 30%;
+        left: 70%;
+    }
+
+    body::after::before {
+        width: 200px;
+        height: 200px;
+        top: 60%;
+        left: 40%;
+    }
+
+    .popup {
+        position: fixed;
+        top: 15%;
+        width: 70%;
+        left: 10%;
+        transform: translate(-50%, -50%);
+    }
+
+    .popup button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
 }
