@@ -19,65 +19,6 @@ body {
     max-width: 600px;
 }
 
-/* Bubbles */
-body::before,
-body::after {
-    content: '';
-    position: absolute;
-    border-radius: 50%;
-    background: rgba(40, 78, 161, 0.3);
-    z-index: -1;
-    animation: move 4s infinite alternate;
-}
-
-body::before {
-    width: 500px;
-    height: 500px;
-    top: 20%;
-    left: 70%;
-    animation-delay: 0s;
-}
-
-body::after {
-    width: 300px;
-    height: 300px;
-    top: 80%;
-    left: 30%;
-    animation-delay: 2s;
-}
-
-/* Additional Bubbles */
-body::before::after {
-    content: '';
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    top: 30%;
-    left: 10%;
-    background: rgba(40, 78, 161, 0.3);
-    animation-delay: 4s;
-}
-
-body::after::before {
-    content: '';
-    position: absolute;
-    width: 400px;
-    height: 400px;
-    top: 50%;
-    left: 90%;
-    background: rgba(40, 78, 161, 0.3);
-    animation-delay: 6s;
-}
-
-@keyframes move {
-    0% {
-        transform: translate(-50%, -50%) scale(1);
-    }
-    100% {
-        transform: translate(-50%, -50%) scale(1.2);
-    }
-}
-
 /* Search Box */
 #search-box {
     background: rgba(255, 255, 255, 0.9);
