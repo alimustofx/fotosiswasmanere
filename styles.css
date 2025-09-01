@@ -1,290 +1,273 @@
-/* General Styles */
+/* General Styles & Resets */
+:root {
+    --primary-color: #007bff;
+    --primary-hover-color: #0056b3;
+    --danger-color: #dc3545;
+    --danger-hover-color: #c82333;
+    --text-dark: #343a40;
+    --text-light: #6c757d;
+    --background-start: #6dd5ed;
+    --background-end: #2193b0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
-    background: linear-gradient(to right, #f8f9fa, #e9ecef);
+    background: linear-gradient(135deg, var(--background-start), var(--background-end));
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    min-height: 100vh;
     overflow: hidden;
     position: relative;
+    color: var(--text-dark);
 }
 
+/* Animated Background Shapes */
+.background-shapes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.shape {
+    position: absolute;
+    list-style: none;
+    display: block;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    animation: float 25s linear infinite;
+    bottom: -150px; /* Start below the screen */
+}
+
+.shape1 { width: 200px; height: 200px; left: 25%; animation-duration: 20s; }
+.shape2 { width: 80px; height: 80px; left: 10%; animation-duration: 15s; animation-delay: 2s; }
+.shape3 { width: 120px; height: 120px; left: 70%; animation-duration: 30s; animation-delay: 4s; }
+.shape4 { width: 50px; height: 50px; left: 40%; animation-duration: 18s; animation-delay: 1s; }
+
+@keyframes float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-120vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Main Container */
 #container {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    max-width: 600px;
+    padding: 20px;
 }
 
-/* Search Box */
+/* Search Box - Enhanced Glassmorphism */
 #search-box {
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 16px;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
     padding: 40px;
     width: 100%;
-    max-width: 500px; /* Ensure a maximum width */
+    max-width: 550px;
     text-align: center;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    transform: translateY(20px);
     opacity: 0;
-    transform: scale(0.8);
-    animation: popUp 0.5s forwards;
+    animation: fadeIn 0.8s 0.2s forwards cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-@keyframes popUp {
-    from {
-        opacity: 0;
-        transform: scale(0.8);
-    }
+@keyframes fadeIn {
     to {
         opacity: 1;
-        transform: scale(1);
+        transform: translateY(0);
     }
 }
 
 #search-box h1 {
-    font-size: 28px;
-    color: #333;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+}
+
+#search-box .subtitle {
+    font-size: 16px;
+    color: var(--text-light);
+    margin-bottom: 30px;
+}
+
+.input-wrapper {
+    display: flex;
+    gap: 10px;
     margin-bottom: 20px;
 }
 
 input[type="text"] {
+    flex-grow: 1;
     border: 1px solid #ced4da;
-    border-radius: 8px;
-    padding: 10px 20px;
-    width: calc(100% - 44px);
-    box-sizing: border-box;
-    margin-bottom: 20px;
+    border-radius: 10px;
+    padding: 12px 18px;
     font-size: 18px;
-    transition: border-color 0.3s ease;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.8);
 }
 
 input[type="text"]:focus {
-    border-color: #007bff;
     outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.2);
 }
 
 button {
-    background-color: #007bff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: var(--primary-color);
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     padding: 12px 24px;
     font-size: 18px;
+    font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: all 0.3s ease;
 }
 
 button:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px);
+    background-color: var(--primary-hover-color);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
 }
 
+button:active {
+    transform: translateY(-1px);
+}
+
+/* Result Card Styling */
 #result {
-    margin-top: 20px;
-    font-size: 18px;
-    color: #333;
+    margin-top: 30px;
 }
 
-#result a {
-    color: #007bff;
+.result-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    text-align: left;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    animation: popUpResult 0.5s forwards;
+}
+
+.result-card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 12px;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.result-info h3 { font-size: 20px; margin-bottom: 5px; }
+.result-info p { font-size: 16px; color: var(--text-light); margin-bottom: 15px; }
+.download-btn {
+    display: inline-block;
+    background: #28a745;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
     text-decoration: none;
     font-weight: 500;
+    transition: background-color 0.3s;
 }
+.download-btn:hover { background: #218838; }
 
-#result a:hover {
-    text-decoration: underline;
+@keyframes popUpResult {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
 }
 
 /* Popup Notification */
 #overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     background: rgba(0, 0, 0, 0.5);
     z-index: 1000;
-    transition: opacity 0.3s ease;
     opacity: 0;
     visibility: hidden;
+    transition: opacity 0.3s ease;
 }
-
-#overlay.show {
-    opacity: 1;
-    visibility: visible;
-}
+#overlay.show { opacity: 1; visibility: visible; }
 
 .popup {
     position: fixed;
-    top: 10%; /* Position it a bit below the top */
-    left: 50%;
-    transform: translate(-50%, 0); /* Center horizontally and no vertical translation */
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
     background: #fff;
     border-radius: 16px;
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    padding: 20px; /* Smaller padding */
-    width: 80%; /* Smaller width for mobile devices */
-    max-width: 400px; /* Set a maximum width */
+    padding: 30px;
+    width: 90%;
+    max-width: 400px;
     text-align: center;
     z-index: 1001;
     opacity: 0;
-    transform: scale(0.8);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
-
 .popup.show {
     opacity: 1;
-    transform: scale(1);
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
 }
-
+.popup #popup-message { margin-bottom: 20px; font-size: 18px; }
 .popup button {
-    background-color: #dc3545;
-    border: none;
-    border-radius: 8px;
-    color: white;
-    padding: 10px 20px; /* Adjusted padding */
-    font-size: 14px; /* Adjusted font size */
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    background-color: var(--danger-color);
+    font-size: 16px;
 }
+.popup button:hover { background-color: var(--danger-hover-color); }
 
-.popup button:hover {
-    background-color: #c82333;
-    transform: translateY(-2px);
-}
-
+/* Footer */
 footer {
     text-align: center;
-    background-color: #f1f1f1;
-    padding: 0px;
+    padding: 15px;
     position: fixed;
     width: 100%;
     bottom: 0;
     left: 0;
     font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
 }
 
-/* Media Queries for Mobile Devices */
+/* Responsive Design */
 @media (max-width: 768px) {
-    #search-box {
-        padding: 20px;
-    }
-
-    #search-box h1 {
-        font-size: 24px;
-    }
-
-    input[type="text"] {
-        padding: 8px 16px;
-        font-size: 16px;
-    }
-
-    button {
-        padding: 10px 20px;
-        font-size: 16px;
-    }
-
-    #result {
-        font-size: 16px;
-    }
-    
-    /* Smaller Bubbles for Tablets */
-    body::before {
-        width: 300px;
-        height: 300px;
-        top: 20%;
-        left: 60%;
-    }
-
-    body::after {
-        width: 200px;
-        height: 200px;
-        top: 70%;
-        left: 30%;
-    }
-
-    body::before::after {
-        width: 400px;
-        height: 400px;
-        top: 40%;
-        left: 10%;
-    }
-
-    body::after::before {
-        width: 300px;
-        height: 300px;
-        top: 60%;
-        left: 80%;
-    }
+    #search-box { padding: 30px; }
+    #search-box h1 { font-size: 28px; }
+    .input-wrapper { flex-direction: column; }
+    .result-card { flex-direction: column; text-align: center; }
 }
 
 @media (max-width: 480px) {
-    #search-box {
-        padding: 15px;
-    }
-
-    #search-box h1 {
-        font-size: 20px;
-    }
-
-    input[type="text"] {
-        padding: 8px 12px;
-        font-size: 14px;
-    }
-
-    button {
-        padding: 8px 16px;
-        font-size: 14px;
-    }
-
-    #result {
-        font-size: 14px;
-    }
-
-    /* Even Smaller Bubbles for Mobile Phones */
-    body::before {
-        width: 200px;
-        height: 200px;
-        top: 10%;
-        left: 50%;
-    }
-
-    body::after {
-        width: 150px;
-        height: 150px;
-        top: 70%;
-        left: 20%;
-    }
-
-    body::before::after {
-        width: 250px;
-        height: 250px;
-        top: 30%;
-        left: 70%;
-    }
-
-    body::after::before {
-        width: 200px;
-        height: 200px;
-        top: 60%;
-        left: 40%;
-    }
-
-    .popup {
-        position: fixed;
-        top: 15%;
-        width: 70%;
-        left: 10%;
-        transform: translate(-50%, -50%);
-    }
-
-    .popup button {
-        padding: 8px 16px;
-        font-size: 14px;
-    }
+    #search-box { padding: 20px; }
+    #search-box h1 { font-size: 24px; }
+    #search-box .subtitle { font-size: 14px; }
+    input[type="text"], button { font-size: 16px; padding: 10px 15px; }
 }
