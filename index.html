@@ -13,6 +13,9 @@
         <div class="shape shape2"></div>
         <div class="shape shape3"></div>
         <div class="shape shape4"></div>
+        <div class="shape shape5"></div>
+        <div class="shape shape6"></div>
+        <div class="shape shape7"></div>
     </div>
 
     <div id="container">
@@ -20,8 +23,8 @@
             <h1>Temukan Fotomu</h1>
             <p class="subtitle">Masukkan Nomor Induk Siswa (NIS) untuk menemukan foto.</p>
             <div class="input-wrapper">
-                <input type="text" id="identity-number" placeholder="Masukkan NIS">
-                <button onclick="searchPhoto()">
+                <input type="text" id="identity-number" placeholder="Contoh: 12345">
+                <button id="search-button" onclick="searchPhoto()">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                     <span>Cari</span>
                 </button>
@@ -33,6 +36,7 @@
 
     <div id="overlay"></div>
     <div id="popup" class="popup">
+        <div class="popup-icon">!</div>
         <p id="popup-message"></p>
         <button onclick="closePopup()">Tutup</button>
     </div>
